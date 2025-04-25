@@ -1,34 +1,47 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { FaGithub, FaLinkedin, FaDribbble } from 'react-icons/fa';
 
 const ContactSection = () => {
-  return (
-    <section id="contact" className="py-20 px-6 bg-[#222831] text-white">
-      <h2 className="text-3xl font-bold text-center mb-6">Contact Me</h2>
-      <p className="text-center text-gray-400 mb-10">Let’s connect and talk about your project or ideas!</p>
+  useEffect(() => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
 
-      <form className="max-w-2xl mx-auto flex flex-col gap-4">
-        <input
-          type="text"
-          placeholder="Your Name"
-          className="p-3 rounded bg-[#393E46] text-white placeholder-gray-400 focus:outline-none"
-        />
-        <input
-          type="email"
-          placeholder="Your Email"
-          className="p-3 rounded bg-[#393E46] text-white placeholder-gray-400 focus:outline-none"
-        />
-        <textarea
-          placeholder="Your Message"
-          rows="5"
-          className="p-3 rounded bg-[#393E46] text-white placeholder-gray-400 focus:outline-none"
-        />
-        <button
-          type="submit"
-          className="mt-2 px-6 py-3 border-[3px] border-[#80f0e9] bg-[#222831] text-white rounded-full hover:bg-[#80f0e9] hover:text-[#222831] transition"
+  return (
+    <section 
+      id="contact" 
+      className="py-20 px-6 bg-[#222831] text-white animate-fadeIn"
+    >
+      <h2 className="text-3xl font-bold text-center mb-6">Contact Me</h2>
+      <p className="text-center text-gray-400 mb-10">
+        Let’s connect! Reach out to me through any of these platforms:
+      </p>
+
+      <div className="flex justify-center gap-8 text-4xl">
+        <a
+          href="hhttps://github.com/TanmayTrivedi"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-[#80f0e9] transition"
         >
-          Send Message
-        </button>
-      </form>
+          <FaGithub />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/tanmay-trivedi-17350532a/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-[#80f0e9] transition"
+        >
+          <FaLinkedin />
+        </a>
+        <a
+          href="https://dribbble.com/yourusername"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-[#80f0e9] transition"
+        >
+          <FaDribbble />
+        </a>
+      </div>
     </section>
   );
 };

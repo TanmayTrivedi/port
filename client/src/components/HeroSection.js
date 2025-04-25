@@ -19,7 +19,7 @@ const HeroSection = () => {
       </div>
 
       {/* Subtext */}
-      <p className="mt-4 text-lg text-gray-400 max-w-xl z-10">
+      <p className="mt-4 text-lg text-gray-400 max-w-xl ">
         A Web Developer passionate about React, AI, and crafting beautiful user experiences.
       </p>
 
