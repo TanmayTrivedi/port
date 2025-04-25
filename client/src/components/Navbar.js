@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Navbar = ({ setShowProjects, setIsProfileOpen }) => {
+const Navbar = ({ setShowProjects, setIsProfileOpen, setShowContact }) => {
   return (
     <nav className="w-fit mx-auto mt-4 px-6 py-4 flex justify-between items-center rounded-full shadow-md bg-[#222831] border-[3px] border-[#80f0e9] fixed top-4 left-1/2 -translate-x-1/2 z-50">
       <ul className="flex space-x-6 text-white font-medium">
@@ -44,7 +44,16 @@ const Navbar = ({ setShowProjects, setIsProfileOpen }) => {
           </button>
         </li>
         <li>
-          <a href="#contact" className="hover:text-[#80f0e9]">Contact</a>
+          <button 
+            onClick={() => {
+              setShowContact(true);
+              setShowProjects(false);
+              setIsProfileOpen(false);
+            }}
+            className="hover:text-[#80f0e9]"
+          >
+            Contact
+          </button>
         </li>
       </ul>
     </nav>

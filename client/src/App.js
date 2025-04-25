@@ -1,35 +1,27 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import ProjectsSection from './components/Projects';
+import ContactSection from './components/ContactSection';
 
 function App() {
   const [showProjects, setShowProjects] = useState(false);
+  const [showContact, setShowContact] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const projectsRef = useRef(null);
-
-  // Scroll into view when project section is set to show
-  useEffect(() => {
-    if (showProjects && projectsRef.current) {
-      projectsRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [showProjects]);
 
   return (
     <>
       <Navbar 
         setShowProjects={setShowProjects}
         setIsProfileOpen={setIsProfileOpen}
+        setShowContact={setShowContact}
       />
       <HeroSection 
         isProfileOpen={isProfileOpen} 
         setIsProfileOpen={setIsProfileOpen} 
       />
-      {showProjects && (
-        <div ref={projectsRef}>
-          <ProjectsSection />
-        </div>
-      )}
+      {showProjects && <ProjectsSection />}
+      {showContact && <ContactSection />}
     </>
   );
 }

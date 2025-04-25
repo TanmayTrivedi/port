@@ -47,7 +47,7 @@ const ProjectsSection = () => {
               {project.title === 'Stylish Project Card'
                 ? 'bg-[#00ADB5] text-white'
                 : 'bg-[#222831] text-white'}
-              p-6 rounded-xl border-[3px] border-[#80f0e9] shadow-lg hover:scale-105 transition-transform duration-300`}
+              p-6 rounded-xl border-[3px] border-[#80f0e9] hover:bg-[#393E46] shadow-lg hover:scale-105 transition-transform duration-300`}
           >
             <h3 className="text-xl font-bold mb-2">{project.title}</h3>
             <p className="text-sm text-gray-100 mb-4">{project.description}</p>
