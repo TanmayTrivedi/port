@@ -9,7 +9,7 @@ const ContactSection = () => {
   return (
     <section 
       id="contact" 
-      className="py-20 px-6 bg-[#222831] text-white animate-fadeIn"
+      className="min-h-screen py-20 px-6 bg-[#222831] text-white animate-fadeIn"
     >
       <h2 className="text-3xl font-bold text-center mb-6">Contact Me</h2>
       <p className="text-center text-gray-400 mb-10">
@@ -18,7 +18,7 @@ const ContactSection = () => {
 
       <div className="flex justify-center gap-8 text-4xl">
         <a
-          href="hhttps://github.com/TanmayTrivedi"
+          href="https://github.com/TanmayTrivedi"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-[#80f0e9] transition"
@@ -40,6 +40,17 @@ const ContactSection = () => {
           className="hover:text-[#80f0e9] transition"
         >
           <FaDribbble />
+        </a>
+      </div>
+
+      <div className="my-8 border-t border-gray-600 w-1/2 mx-auto"></div>
+
+      <div className="flex justify-center">
+        <a 
+          href="mailto:your-email@example.com" 
+          className="mt-6 inline-block border border-[#80f0e9] border-3px bg-[#222831] text-white text-semibold py-3 px-6 rounded-full hover:bg-[#80f0e9] transition-transform transform hover:text-[#222831]  hover:scale-105"
+        >
+          Email Me
         </a>
       </div>
     </section>

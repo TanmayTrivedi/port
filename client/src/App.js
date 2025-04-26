@@ -5,23 +5,17 @@ import ProjectsSection from './components/Projects';
 import ContactSection from './components/ContactSection';
 
 function App() {
-  const [showProjects, setShowProjects] = useState(false);
-  const [showContact, setShowContact] = useState(false);
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home'); 
+  // 'home' | 'projects' | 'contact'
 
   return (
     <>
-      <Navbar 
-        setShowProjects={setShowProjects}
-        setIsProfileOpen={setIsProfileOpen}
-        setShowContact={setShowContact}
-      />
-      <HeroSection 
-        isProfileOpen={isProfileOpen} 
-        setIsProfileOpen={setIsProfileOpen} 
-      />
-      {showProjects && <ProjectsSection />}
-      {showContact && <ContactSection />}
+      <Navbar setActiveSection={setActiveSection} activeSection={activeSection} />
+
+      
+      {activeSection === 'home' && <HeroSection />}
+      {activeSection === 'projects' && <ProjectsSection />}
+      {activeSection === 'contact' && <ContactSection />}
     </>
   );
 }
