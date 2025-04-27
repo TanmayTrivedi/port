@@ -48,7 +48,7 @@ const ContactSection = () => {
       <div className="flex justify-center">
         <a 
           href="mailto:your-email@example.com" 
-          className="mt-6 inline-block border border-[#80f0e9] border-3px bg-[#222831] text-white text-semibold py-3 px-6 rounded-full hover:bg-[#80f0e9] transition-transform transform hover:text-[#222831]  hover:scale-105"
+          className="mt-6 inline-block border border-[#80f0e9] border-[3px] bg-[#222831] text-white text-bold py-3 px-6 rounded-full hover:bg-[#80f0e9] transition-transform transform hover:text-[#222831]  hover:scale-105"
         >
           Email Me
         </a>
