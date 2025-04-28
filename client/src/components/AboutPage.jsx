@@ -60,7 +60,7 @@ const AboutPage = ({ setActiveSection }) => {
         <div className="text-center">
         <button
             onClick={() => setActiveSection('contact')}
-            className="inline-block bg-[#222831] border border-[#80f0e9] border-[3px] text-white font-semibold py-3 px-8 rounded-full hover:text-[#222831] hover:bg-[#80f0e9] transition"
+            className="inline-block bg-[#222831] border border-[#80f0e9] border-[3px] text-white font-semibold py-3 px-8 rounded-full hover:text-[#222831] hover:bg-[#80f0e9] hover:scale-105 transition-transform duration-300"
           >
             Let's Collaborate
           </button>
