@@ -1,23 +1,16 @@
-// server/server.js
 const express = require('express');
-const app = express();
-const PORT = 5000;
-
-// Import blog routes
+const cors = require('cors');
 const blogRoutes = require('./routes/blogRoutes');
 
-// Middleware
-app.use(express.json()); // to accept JSON body data
+const app = express();
 
-// Routes
-app.use('/api', blogRoutes);
+app.use(cors());
+app.use(express.json());
 
-// Root route
-app.get('/', (req, res) => {
-  res.send('Backend is running successfully!');
-});
+// Connect API
+app.use('/api/blogs', blogRoutes);
 
 // Start server
-app.listen(PORT, () => {
-  console.log(`Server started on http://localhost:${PORT}`);
+app.listen(5000, () => {
+  console.log('Server running on port 5000');
 });
