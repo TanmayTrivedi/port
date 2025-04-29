@@ -1,54 +1,47 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios'; // make sure you installed it: npm install axios
 
-const BlogSection = ({ setActiveSection, setSelectedBlogId }) => {
+const BlogSection = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        const response = await fetch('/api/blogs');
-
-        setBlogs(response.data); // assuming backend returns array of blogs
-      } catch (error) {
-        console.error('Error fetching blogs:', error);
-      } finally {
+    fetch('/api/blogs')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to fetch blogs');
+        return res.json();
+      })
+      .then(data => {
+        console.log('Fetched blogs:', data);
+        setBlogs(data.blogs || []); // ✅ expects blogs inside an object
         setLoading(false);
-      }
-    };
-
-    fetchBlogs();
+      })
+      .catch(err => {
+        console.error('Error fetching blogs:', err);
+        setError('Failed to load blogs');
+        setLoading(false);
+      });
   }, []);
 
-  if (loading) {
-    return (
-      <section className="min-h-screen py-20 px-6 bg-[#222831] text-white flex justify-center items-center">
-        <p>Loading Blogs...</p>
-      </section>
-    );
-  }
+  if (loading) return <p className="text-white text-center">Loading...</p>;
+  if (error) return <p className="text-red-500 text-center">{error}</p>;
 
   return (
-    <section className="min-h-screen py-20 px-6 bg-[#222831] text-white">
-      <h2 className="text-3xl font-bold mb-8 text-center">Blogs</h2>
-
-      <div className="max-w-3xl mx-auto space-y-6">
-        {blogs.map((blog) => (
-          <div
-            key={blog._id}
-            className="p-6 border-[2px] border-[#80f0e9] rounded-lg hover:bg-[#393E46] hover:scale-105 transition-transform duration-300 cursor-pointer"
-            onClick={() => {
-              setSelectedBlogId(blog._id);
-              setActiveSection('blogDetails');
-            }}
-          >
-            <h3 className="text-xl font-semibold mb-2">{blog.title}</h3>
-            <p className="text-sm text-gray-400">Read more →</p>
-          </div>
-        ))}
-      </div>
-    </section>
+    <div className="text-white p-6">
+      <h2 className="text-center text-3xl font-bold mb-6">Blogs</h2>
+      {blogs.length === 0 ? (
+        <p className="text-center">No blogs found.</p>
+      ) : (
+        <div className="grid gap-6 max-w-4xl mx-auto">
+          {blogs.map((blog) => (
+            <div key={blog._id} className="p-4 border border-white rounded-xl">
+              <h3 className="text-xl font-semibold mb-2">{blog.title}</h3>
+              <p className="text-sm text-gray-300">{blog.content || "No content available."}</p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 };
 
