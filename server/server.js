@@ -1,16 +1,22 @@
+// server/index.js or wherever your Express routes are
+
 const express = require('express');
-const cors = require('cors');
-const blogRoutes = require('./routes/blogRoutes');
-
 const app = express();
+const blogData = require('./blogData'); // Make sure this path is correct
 
-app.use(cors());
-app.use(express.json());
+app.get('/api/blogs', (req, res) => {
+  res.json(Object.entries(blogData).map(([id, data]) => ({
+    _id: id,
+    title: data.title
+  })));
+});
 
-// Connect API
-app.use('/api/blogs', blogRoutes);
-
-// Start server
-app.listen(5000, () => {
-  console.log('Server running on port 5000');
+// Optionally: for full blog details
+app.get('/api/blogs/:id', (req, res) => {
+  const blog = blogData[req.params.id];
+  if (blog) {
+    res.json(blog);
+  } else {
+    res.status(404).json({ error: 'Blog not found' });
+  }
 });
