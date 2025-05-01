@@ -6,22 +6,21 @@ const BlogSection = ({ setActiveSection, setSelectedBlogId }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/api/blogs')
+    fetch('http://localhost:5000/api/blogs')
       .then(res => res.json())
       .then(data => {
-        if (Array.isArray(data)) {
-          setBlogs(data);
-        } else {
-          setError('Invalid blog data format');
+        if (!Array.isArray(data)) {
+          setError("Invalid blog data format");
+          return;
         }
-        setLoading(false);
+        setBlogs(data);
       })
       .catch(err => {
-        console.error('Error fetching blogs:', err);
-        setError('Failed to load blogs');
-        setLoading(false);
+        setError("Failed to load blogs");
+        console.error(err);
       });
   }, []);
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] text-white p-6">

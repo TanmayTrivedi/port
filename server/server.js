@@ -2,14 +2,17 @@
 
 const express = require('express');
 const app = express();
-const blogData = require('./blogData'); // Make sure this path is correct
+// index.js or server.js
+const blogData = require('./blogData');
 
 app.get('/api/blogs', (req, res) => {
-  res.json(Object.entries(blogData).map(([id, data]) => ({
+  const blogs = Object.entries(blogData).map(([id, blog]) => ({
     _id: id,
-    title: data.title
-  })));
+    ...blog
+  }));
+  res.json(blogs);
 });
+
 
 // Optionally: for full blog details
 app.get('/api/blogs/:id', (req, res) => {
