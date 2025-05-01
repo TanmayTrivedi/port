@@ -14,12 +14,15 @@ const BlogSection = ({ setActiveSection, setSelectedBlogId }) => {
           return;
         }
         setBlogs(data);
+        setLoading(false);  // ✅ This is missing in your code
       })
       .catch(err => {
         setError("Failed to load blogs");
         console.error(err);
+        setLoading(false);  // ✅ Also set it in catch
       });
   }, []);
+  
   
 
   return (

@@ -4,10 +4,12 @@ import HeroSection from './components/HeroSection';
 import ProjectsSection from './components/Projects';
 import ContactSection from './components/ContactSection';
 import AboutSection from './components/AboutPage';
-import BlogPage from './components/BlogPage'; // Updated import
+import BlogSection from './components/BlogSection';
+import BlogDetails from './components/BlogDetails';
 
 function App() {
-  const [activeSection, setActiveSection] = useState('home'); 
+  const [activeSection, setActiveSection] = useState('home');
+  const [selectedBlogId, setSelectedBlogId] = useState(null);
 
   return (
     <>
@@ -17,7 +19,18 @@ function App() {
       {activeSection === 'projects' && <ProjectsSection />}
       {activeSection === 'contact' && <ContactSection />}
       {activeSection === 'about' && <AboutSection />}
-      {activeSection === 'blog' && <BlogPage setActiveSection={setActiveSection} />}
+      {activeSection === 'blog' && (
+        <BlogSection
+          setActiveSection={setActiveSection}
+          setSelectedBlogId={setSelectedBlogId}
+        />
+      )}
+      {activeSection === 'blogDetails' && (
+        <BlogDetails
+          blogId={selectedBlogId}
+          setActiveSection={setActiveSection}
+        />
+      )}
     </>
   );
 }
