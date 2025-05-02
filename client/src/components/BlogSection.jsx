@@ -26,7 +26,7 @@ const BlogSection = ({ setActiveSection, setSelectedBlogId }) => {
   
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] text-white p-6">
+    <div className="min-h-screen bg-[#222831] text-white p-6">
       <h2 className="text-center text-3xl font-bold mb-6">Blogs</h2>
       {loading ? (
         <p className="text-white text-center">Loading...</p>
@@ -39,7 +39,7 @@ const BlogSection = ({ setActiveSection, setSelectedBlogId }) => {
           {blogs.map((blog) => (
             <div
               key={blog._id}
-              className="p-4 border border-white rounded-xl bg-[#1c1c1c] cursor-pointer hover:bg-[#393E46] transition-colors"
+              className="p-4 border-[3px] border-[#80f0e9] bg-[#222831]  hover:scale-105 transition-transform duration-300 rounded-xl cursor-pointer hover:bg-[#393E46] transition-colors"
               onClick={() => {
                 setSelectedBlogId(blog._id);
                 setActiveSection('blogDetails');

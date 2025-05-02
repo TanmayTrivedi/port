@@ -27,7 +27,7 @@ const BlogDetails = ({ blogId, setActiveSection }) => {
   }, [blogId]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#141E30] to-[#243B55] text-white p-6">
+    <div className="min-h-screen  bg-[#222831] text-white p-6">
       <button
         onClick={() => setActiveSection('blog')}
         className="text-sm text-blue-300 underline mb-4"
