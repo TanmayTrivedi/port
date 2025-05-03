@@ -14,16 +14,14 @@ const BlogSection = ({ setActiveSection, setSelectedBlogId }) => {
           return;
         }
         setBlogs(data);
-        setLoading(false);  // ✅ This is missing in your code
+        setLoading(false);
       })
       .catch(err => {
         setError("Failed to load blogs");
         console.error(err);
-        setLoading(false);  // ✅ Also set it in catch
+        setLoading(false);
       });
   }, []);
-  
-  
 
   return (
     <div className="min-h-screen bg-[#222831] text-white p-6">
@@ -39,16 +37,18 @@ const BlogSection = ({ setActiveSection, setSelectedBlogId }) => {
           {blogs.map((blog) => (
             <div
               key={blog._id}
-              className="p-4 border-[3px] border-[#80f0e9] bg-[#222831]  hover:scale-105 transition-transform duration-300 rounded-xl cursor-pointer hover:bg-[#393E46] transition-colors"
+              className="p-4 border-[3px] border-[#80f0e9] bg-[#222831] hover:bg-[#80f0e9] hover:scale-105 hover:text-[#222831] transition-transform duration-300 rounded-xl cursor-pointer group"
               onClick={() => {
                 setSelectedBlogId(blog._id);
                 setActiveSection('blogDetails');
               }}
             >
-              <h3 className="text-xl font-semibold mb-2 text-[#80f0e9] hover:underline">
+              <h3 className="text-xl font-semibold mb-2 text-[#80f0e9] group-hover:text-[#222831] group-hover:underline">
                 {blog.title}
               </h3>
-              <p className="text-sm text-gray-300">Click to read more...</p>
+              <p className="text-sm text-gray-300 group-hover:text-[#222831]">
+                Click to read more...
+              </p>
             </div>
           ))}
         </div>
