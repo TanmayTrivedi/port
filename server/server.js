@@ -2,34 +2,24 @@
 
 const express = require('express');
 const cors = require('cors');
-const blogData = require('./data/blogData');
+const blogRoutes = require('./routes/blogRoutes');
 
 const app = express();
+const PORT = 5000;
 
-// Enable CORS so your frontend (localhost:3000) can access the backend (localhost:5000)
+// Middleware
 app.use(cors());
+app.use(express.json()); // Required to parse JSON bodies
 
-// Route to get all blogs
-app.get('/api/blogs', (req, res) => {
-  const blogs = Object.entries(blogData).map(([id, blog]) => ({
-    _id: id,
-    ...blog,
-  }));
-  res.json(blogs);
-});
+// Blog Routes
+app.use('/api/blogs', blogRoutes);
 
-// Route to get a single blog by ID
-app.get('/api/blogs/:id', (req, res) => {
-  const blog = blogData[req.params.id];
-  if (blog) {
-    res.json(blog);
-  } else {
-    res.status(404).json({ error: 'Blog not found' });
-  }
+// Root endpoint
+app.get('/', (req, res) => {
+  res.send('Blog API is running...');
 });
 
 // Start the server
-const PORT = 5000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`✅ Server running on http://localhost:${PORT}`);
 });
