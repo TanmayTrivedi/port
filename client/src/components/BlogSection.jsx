@@ -43,7 +43,7 @@ const BlogSection = ({ setActiveSection, setSelectedBlogId }) => {
                 setActiveSection('blogDetails');
               }}
             >
-              <h3 className="text-xl font-semibold mb-2 text-[#80f0e9] group-hover:text-[#222831] group-hover:underline">
+              <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-[#222831] group-hover:underline">
                 {blog.title}
               </h3>
               <p className="text-sm text-gray-300 group-hover:text-[#222831]">

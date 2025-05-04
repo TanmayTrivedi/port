@@ -1,25 +1,20 @@
-// server/server.js
-
 const express = require('express');
 const cors = require('cors');
 const blogRoutes = require('./routes/blogRoutes');
+const bodyParser = require('body-parser');
 
 const app = express();
-const PORT = 5000;
 
 // Middleware
 app.use(cors());
-app.use(express.json()); // Required to parse JSON bodies
+app.use(express.json()); // to parse application/json
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// Blog Routes
+// Mount blog routes
 app.use('/api/blogs', blogRoutes);
 
-// Root endpoint
-app.get('/', (req, res) => {
-  res.send('Blog API is running...');
-});
-
 // Start the server
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`✅ Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
