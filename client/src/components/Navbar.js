@@ -9,10 +9,8 @@ const Navbar = ({ setActiveSection, activeSection }) => {
       const currentScrollY = window.scrollY;
 
       if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        // Scrolling down and scrolled enough → hide navbar
         setHideNavbar(true);
       } else {
-        // Scrolling up → show navbar
         setHideNavbar(false);
       }
 
@@ -34,16 +32,12 @@ const Navbar = ({ setActiveSection, activeSection }) => {
     >
       <ul className="flex space-x-6 text-white font-medium">
         <li>
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              setActiveSection('home');
-            }}
+          <button
+            onClick={() => setActiveSection('home')}
             className="hover:text-[#80f0e9] hover:scale-105 transition-all duration-150"
           >
             Home
-          </a>
+          </button>
         </li>
         <li>
           <button
@@ -75,6 +69,14 @@ const Navbar = ({ setActiveSection, activeSection }) => {
             className="hover:text-[#80f0e9] hover:scale-105 transition-all duration-150"
           >
             Contact
+          </button>
+        </li>
+        <li>
+          <button
+            onClick={() => setActiveSection('admin')}
+            className="hover:text-[#80f0e9] hover:scale-105 transition-all duration-150"
+          >
+            Admin
           </button>
         </li>
       </ul>

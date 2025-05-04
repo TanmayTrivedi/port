@@ -6,6 +6,7 @@ import ContactSection from './components/ContactSection';
 import AboutSection from './components/AboutPage';
 import BlogSection from './components/BlogSection';
 import BlogDetails from './components/BlogDetails';
+import AdminBlogPage from './components/AdminBlogPage'; // ✅ Import added
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -28,6 +29,11 @@ function App() {
       {activeSection === 'blogDetails' && (
         <BlogDetails
           blogId={selectedBlogId}
+          setActiveSection={setActiveSection}
+        />
+      )}
+      {activeSection === 'admin' && (
+        <AdminBlogPage
           setActiveSection={setActiveSection}
         />
       )}
