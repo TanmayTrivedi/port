@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 const Navbar = ({ setActiveSection, activeSection }) => {
   const [hideNavbar, setHideNavbar] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,6 +15,16 @@ const Navbar = ({ setActiveSection, activeSection }) => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
+
+  const handleAdminAccess = () => {
+    const enteredKey = prompt('Enter admin secret key:');
+    if (enteredKey === import.meta.env.VITE_ADMIN_SECRET) {
+      setIsAdmin(true);
+      setActiveSection('admin');
+    } else {
+      alert('Invalid admin key.');
+    }
+  };
 
   return (
     <nav
@@ -64,7 +75,25 @@ const Navbar = ({ setActiveSection, activeSection }) => {
             Contact
           </button>
         </li>
-        {/* No Admin button shown publicly */}
+        {isAdmin ? (
+          <li>
+            <button
+              onClick={() => setActiveSection('admin')}
+              className="hover:text-[#80f0e9] hover:scale-105 transition-all duration-150"
+            >
+              Admin
+            </button>
+          </li>
+        ) : (
+          <li>
+            <button
+              onClick={handleAdminAccess}
+              className="hover:text-[#80f0e9] hover:scale-105 transition-all duration-150"
+            >
+              Admin
+            </button>
+          </li>
+        )}
       </ul>
     </nav>
   );
