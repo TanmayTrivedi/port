@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import ProjectsSection from './components/Projects';
@@ -6,11 +6,24 @@ import ContactSection from './components/ContactSection';
 import AboutSection from './components/AboutPage';
 import BlogSection from './components/BlogSection';
 import BlogDetails from './components/BlogDetails';
-import AdminBlogPage from './components/AdminBlogPage'; // ✅ Import added
+import AdminBlogPage from './components/AdminBlogPage';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [selectedBlogId, setSelectedBlogId] = useState(null);
+  const [showAdminPanel, setShowAdminPanel] = useState(false);
+
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (e.ctrlKey && e.altKey && e.key === 'a') {
+        setShowAdminPanel(true);
+        setActiveSection('admin');
+      }
+    };
+
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, []);
 
   return (
     <>
@@ -32,10 +45,8 @@ function App() {
           setActiveSection={setActiveSection}
         />
       )}
-      {activeSection === 'admin' && (
-        <AdminBlogPage
-          setActiveSection={setActiveSection}
-        />
+      {activeSection === 'admin' && showAdminPanel && (
+        <AdminBlogPage setActiveSection={setActiveSection} />
       )}
     </>
   );

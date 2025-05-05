@@ -7,18 +7,11 @@ const Navbar = ({ setActiveSection, activeSection }) => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
-      if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        setHideNavbar(true);
-      } else {
-        setHideNavbar(false);
-      }
-
+      setHideNavbar(currentScrollY > lastScrollY && currentScrollY > 50);
       setLastScrollY(currentScrollY);
     };
 
     window.addEventListener('scroll', handleScroll);
-
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
@@ -71,14 +64,7 @@ const Navbar = ({ setActiveSection, activeSection }) => {
             Contact
           </button>
         </li>
-        <li>
-          <button
-            onClick={() => setActiveSection('admin')}
-            className="hover:text-[#80f0e9] hover:scale-105 transition-all duration-150"
-          >
-            Admin
-          </button>
-        </li>
+        {/* No Admin button shown publicly */}
       </ul>
     </nav>
   );
