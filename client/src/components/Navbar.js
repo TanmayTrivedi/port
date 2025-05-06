@@ -18,7 +18,7 @@ const Navbar = ({ setActiveSection, activeSection }) => {
 
   const handleAdminAccess = () => {
     const enteredKey = prompt('Enter admin secret key:');
-    if (enteredKey === import.meta.env.VITE_ADMIN_SECRET) {
+    if (enteredKey === process.env.REACT_APP_ADMIN_SECRET) {
       setIsAdmin(true);
       setActiveSection('admin');
     } else {
@@ -75,25 +75,23 @@ const Navbar = ({ setActiveSection, activeSection }) => {
             Contact
           </button>
         </li>
-        {isAdmin ? (
-          <li>
+        <li>
+          {isAdmin ? (
             <button
               onClick={() => setActiveSection('admin')}
               className="hover:text-[#80f0e9] hover:scale-105 transition-all duration-150"
             >
               Admin
             </button>
-          </li>
-        ) : (
-          <li>
+          ) : (
             <button
               onClick={handleAdminAccess}
               className="hover:text-[#80f0e9] hover:scale-105 transition-all duration-150"
             >
               Admin
             </button>
-          </li>
-        )}
+          )}
+        </li>
       </ul>
     </nav>
   );
