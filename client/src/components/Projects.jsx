@@ -13,7 +13,7 @@ const projects = [
     description: 'Visualized crime statistics using Power BI and Python for LA city data.',
     aiSummary: 'Detects trends in crime data and provides interactive visual storytelling.',
     tech: ['Python', 'Power BI'],
-    link: '#',
+    link: 'https://github.com/TanmayTrivedi/crime-report.git',
   },
   {
     title: 'Calculator-Using Python GUI',
