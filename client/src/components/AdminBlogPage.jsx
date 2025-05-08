@@ -1,4 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { db } from '../firebase'; // ✅ Make sure this path is correct
+import {
+  collection,
+  addDoc,
+  getDocs,
+  serverTimestamp
+} from 'firebase/firestore';
 
 const AdminBlogPage = () => {
   const [blogs, setBlogs] = useState([]);
@@ -7,32 +14,38 @@ const AdminBlogPage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/blogs')
-      .then(res => res.json())
-      .then(data => setBlogs(data))
-      .catch(err => {
+    const fetchBlogs = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'blogs'));
+        const blogsData = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setBlogs(blogsData);
+      } catch (err) {
         console.error(err);
         setError('Failed to fetch blogs');
-      });
+      }
+    };
+
+    fetchBlogs();
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    fetch('http://localhost:5000/api/blogs', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, content })
-    })
-      .then(res => res.json())
-      .then(newBlog => {
-        setBlogs([...blogs, newBlog]);
-        setTitle('');
-        setContent('');
-      })
-      .catch(err => {
-        console.error(err);
-        setError('Failed to create blog');
+    try {
+      const docRef = await addDoc(collection(db, 'blogs'), {
+        title,
+        content,
+        createdAt: serverTimestamp()
       });
+      setBlogs([...blogs, { id: docRef.id, title, content }]);
+      setTitle('');
+      setContent('');
+    } catch (err) {
+      console.error(err);
+      setError('Failed to create blog');
+    }
   };
 
   return (
@@ -68,7 +81,7 @@ const AdminBlogPage = () => {
 
       <div className="space-y-4">
         {blogs.map(blog => (
-          <div key={blog._id} className="p-4 border border-gray-700 rounded bg-[#2c2c2c]">
+          <div key={blog.id} className="p-4 border border-gray-700 rounded bg-[#2c2c2c]">
             <h3 className="text-xl font-semibold text-[#80f0e9]">{blog.title}</h3>
             <p className="text-gray-300 mt-2 whitespace-pre-line">{blog.content}</p>
           </div>
