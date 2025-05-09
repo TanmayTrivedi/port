@@ -28,6 +28,8 @@ const createBlog = (req, res) => {
 
 // Get a single blog by ID
 const getBlogById = (req, res) => {
+  console.log("Incoming request for blog ID:", req.params.id);
+  console.log("Available IDs:", blogs.map(b => b._id));
   const blog = blogs.find(b => b._id === req.params.id);
   if (!blog) {
     return res.status(404).json({ message: 'Blog not found.' });
