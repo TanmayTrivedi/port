@@ -6,9 +6,13 @@ const BlogDetails = ({ blogId, setActiveSection }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!blogId) return;
+    if (!blogId) {
+      setError("No blog ID provided");
+      setLoading(false);
+      return;
+    }
 
-    fetch(`/api/blogs/${blogId}`)
+    fetch(`http://localhost:5000/api/blogs/${blogId}`)
       .then(res => {
         if (!res.ok) {
           throw new Error('Blog not found');
@@ -18,6 +22,7 @@ const BlogDetails = ({ blogId, setActiveSection }) => {
       .then(data => {
         setBlog(data);
         setLoading(false);
+        setError(null);
       })
       .catch(err => {
         console.error('Error fetching blog:', err);
@@ -27,7 +32,7 @@ const BlogDetails = ({ blogId, setActiveSection }) => {
   }, [blogId]);
 
   return (
-    <div className="min-h-screen  bg-[#222831] text-white p-6">
+    <div className="min-h-screen bg-[#222831] text-white px-6 pt-32 pb-10">
       <button
         onClick={() => setActiveSection('blog')}
         className="text-sm text-blue-300 underline mb-4"
@@ -40,7 +45,7 @@ const BlogDetails = ({ blogId, setActiveSection }) => {
       ) : error ? (
         <p className="text-red-500">{error}</p>
       ) : blog ? (
-        <div className="max-w-3xl mx-auto bg-[#1c1c1c] p-6 rounded-xl">
+        <div className="max-w-3xl mx-auto bg-[#1c1c1c] p-6 rounded-xl shadow-lg">
           <h1 className="text-3xl font-bold text-[#80f0e9] mb-4">{blog.title}</h1>
           <p className="text-gray-300 whitespace-pre-line">{blog.content}</p>
         </div>
