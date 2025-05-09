@@ -15,7 +15,9 @@ function App() {
 
   useEffect(() => {
     const handleKey = (e) => {
-      if (e.ctrlKey && e.altKey && e.key === 'a') {
+      console.log('Key pressed:', e.key); // Debug log
+      if (e.key === 'F2') {
+        console.log('Admin shortcut triggered');
         setShowAdminPanel(true);
         setActiveSection('admin');
       }

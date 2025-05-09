@@ -4,6 +4,9 @@ import {
   collection,
   addDoc,
   getDocs,
+  updateDoc,
+  deleteDoc,
+  doc,
   serverTimestamp
 } from 'firebase/firestore';
 
@@ -11,6 +14,7 @@ const AdminBlogPage = () => {
   const [blogs, setBlogs] = useState([]);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [editId, setEditId] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -33,18 +37,49 @@ const AdminBlogPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!title || !content) return;
+
     try {
-      const docRef = await addDoc(collection(db, 'blogs'), {
-        title,
-        content,
-        createdAt: serverTimestamp()
-      });
-      setBlogs([...blogs, { id: docRef.id, title, content }]);
+      if (editId) {
+        const blogRef = doc(db, 'blogs', editId);
+        await updateDoc(blogRef, {
+          title,
+          content,
+          updatedAt: serverTimestamp()
+        });
+
+        setBlogs(blogs.map(blog => blog.id === editId ? { ...blog, title, content } : blog));
+        setEditId(null);
+      } else {
+        const docRef = await addDoc(collection(db, 'blogs'), {
+          title,
+          content,
+          createdAt: serverTimestamp()
+        });
+        setBlogs([...blogs, { id: docRef.id, title, content }]);
+      }
+
       setTitle('');
       setContent('');
     } catch (err) {
       console.error(err);
-      setError('Failed to create blog');
+      setError('Failed to save blog');
+    }
+  };
+
+  const handleEdit = (blog) => {
+    setTitle(blog.title);
+    setContent(blog.content);
+    setEditId(blog.id);
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteDoc(doc(db, 'blogs', id));
+      setBlogs(blogs.filter(blog => blog.id !== id));
+    } catch (err) {
+      console.error(err);
+      setError('Failed to delete blog');
     }
   };
 
@@ -73,7 +108,7 @@ const AdminBlogPage = () => {
           type="submit"
           className="bg-[#80f0e9] text-[#1f1f1f] font-bold px-4 py-2 rounded hover:bg-[#4dd0c3]"
         >
-          Add Blog
+          {editId ? 'Update Blog' : 'Add Blog'}
         </button>
       </form>
 
@@ -84,6 +119,20 @@ const AdminBlogPage = () => {
           <div key={blog.id} className="p-4 border border-gray-700 rounded bg-[#2c2c2c]">
             <h3 className="text-xl font-semibold text-[#80f0e9]">{blog.title}</h3>
             <p className="text-gray-300 mt-2 whitespace-pre-line">{blog.content}</p>
+            <div className="mt-4 space-x-2">
+              <button
+                onClick={() => handleEdit(blog)}
+                className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => handleDelete(blog.id)}
+                className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+              >
+                Delete
+              </button>
+            </div>
           </div>
         ))}
       </div>
