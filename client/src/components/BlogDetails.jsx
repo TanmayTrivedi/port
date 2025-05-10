@@ -1,43 +1,43 @@
 import React, { useEffect, useState } from 'react';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../firebase'; // Make sure the path is correct
 
 const BlogDetails = ({ blogId, setActiveSection }) => {
   const [blog, setBlog] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  useEffect(() => {
-  console.log("blogId from props/state:", blogId);
-}, []);
 
+  useEffect(() => {
+    console.log('blogId from props/state:', blogId);
+  }, []);
 
   useEffect(() => {
     if (!blogId) return;
 
-    setLoading(true);
-    setError(null);
-console.log("Fetching blog with ID:", blogId);
-   fetch(`/api/blogs/${blogId}`)
-  .then(res => {
-    console.log("Response status:", res.status);
-    return res.json();
-  })
-  .then(data => {
-    console.log("Fetched blog data:", data);
-    setBlog(data);
-  })
-  .catch(error => {
-    console.error("Fetch error:", error);
-    setError(error.message);
-  })
+    const fetchBlog = async () => {
+      setLoading(true);
+      setError(null);
 
-      .then(data => {
-        setBlog(data);
+      try {
+        const docRef = doc(db, 'blogs', blogId);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          console.log('Fetched blog data:', docSnap.data());
+          setBlog(docSnap.data());
+        } else {
+          setError('Blog not found.');
+        }
+      } catch (err) {
+        console.error('Firestore error:', err.message);
+        setError('Failed to load blog.');
+      } finally {
         setLoading(false);
-      })
-      .catch(err => {
-        console.error('Fetch blog error:', err.message);
-        setError(err.message);
-        setLoading(false);
-      });
+      }
+    };
+
+    console.log('Fetching blog with ID:', blogId);
+    fetchBlog();
   }, [blogId]);
 
   return (
