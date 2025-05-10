@@ -17,7 +17,8 @@ const Navbar = ({ setActiveSection, activeSection }) => {
 
   return (
     <nav
-      className={`fixed top-4 ${
+      className={`fixed top-4 bg-[#222831]/80 backdrop-blur-md
+${
         activeSection === 'home' ? 'left-1/2 -translate-x-1/2' : 'left-12 translate-x-0'
       } w-fit mx-auto px-6 py-4 flex justify-between items-center rounded-full shadow-md bg-[#222831] border-[3px] border-[#80f0e9] z-50 transition-all duration-300 ${
         hideNavbar ? '-translate-y-20 opacity-0' : 'translate-y-0 opacity-100'

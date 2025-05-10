@@ -84,7 +84,7 @@ const AdminBlogPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#1f1f1f] text-white p-6">
+    <div className="min-h-screen bg-[#1f1f1f] text-white p-6 pt-28">
       <h2 className="text-2xl font-bold mb-4">Admin Blog Panel</h2>
 
       <form onSubmit={handleSubmit} className="mb-6 space-y-4">
