@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import ProjectsSection from './components/Projects';
@@ -6,8 +7,6 @@ import ContactSection from './components/ContactSection';
 import AboutSection from './components/AboutPage';
 import BlogSection from './components/BlogSection';
 import BlogDetails from './components/BlogDetails';
-import AdminBlogPage from './components/AdminBlogPage';
-import AdminProject from './components/AdminProject';
 import AdminDashboard from './components/AdminDashboard';
 // ✅ corrected
 
@@ -35,6 +34,12 @@ function App() {
           setActiveSection={setActiveSection}
         />
       )}
+       <Router>
+      <Routes>
+        <Route path="/admin" element={<AdminDashboard />} />
+        {/* ...other routes */}
+      </Routes>
+    </Router>
     </>
   );
 }
