@@ -1,5 +1,5 @@
 import React from 'react';
-import { uploadProjectsToFirebase } from '../utils/UploadProjects'; // adjust path if needed
+import { uploadProjectsToFirebase } from '../utils/UploadProject'; // adjust path if needed
 
 const AdminProjectPage = () => {
   return (

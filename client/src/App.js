@@ -7,6 +7,7 @@ import AboutSection from './components/AboutPage';
 import BlogSection from './components/BlogSection';
 import BlogDetails from './components/BlogDetails';
 import AdminBlogPage from './components/AdminBlogPage';
+import AdminProject from './components/AdminProject'; // ✅ corrected
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -15,9 +16,7 @@ function App() {
 
   useEffect(() => {
     const handleKey = (e) => {
-      console.log('Key pressed:', e.key); // Debug log
       if (e.key === 'F2') {
-        console.log('Admin shortcut triggered');
         setShowAdminPanel(true);
         setActiveSection('admin');
       }
@@ -48,7 +47,10 @@ function App() {
         />
       )}
       {activeSection === 'admin' && showAdminPanel && (
-        <AdminBlogPage setActiveSection={setActiveSection} />
+        <>
+          <AdminBlogPage setActiveSection={setActiveSection} />
+          <AdminProject /> {/* ✅ Button to upload projects */}
+        </>
       )}
     </>
   );
