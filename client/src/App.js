@@ -7,7 +7,9 @@ import AboutSection from './components/AboutPage';
 import BlogSection from './components/BlogSection';
 import BlogDetails from './components/BlogDetails';
 import AdminBlogPage from './components/AdminBlogPage';
-import AdminProject from './components/AdminProject'; // ✅ corrected
+import AdminProject from './components/AdminProject';
+import AdminDashboard from './components/AdminDashboard';
+ // ✅ corrected
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -21,6 +23,7 @@ function App() {
         setActiveSection('admin');
       }
     };
+    
 
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
@@ -46,12 +49,9 @@ function App() {
           setActiveSection={setActiveSection}
         />
       )}
-      {activeSection === 'admin' && showAdminPanel && (
-        <>
-          <AdminBlogPage setActiveSection={setActiveSection} />
-          <AdminProject /> {/* ✅ Button to upload projects */}
-        </>
-      )}
+     {activeSection === 'admin' && showAdminPanel && (
+  <AdminDashboard setActiveSection={setActiveSection} />
+)}
     </>
   );
 }
