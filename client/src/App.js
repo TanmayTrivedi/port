@@ -8,9 +8,8 @@ import AboutSection from './components/AboutPage';
 import BlogSection from './components/BlogSection';
 import BlogDetails from './components/BlogDetails';
 import AdminDashboard from './components/AdminDashboard';
-// ✅ corrected
 
-function App() {
+function MainApp() {
   const [activeSection, setActiveSection] = useState('home');
   const [selectedBlogId, setSelectedBlogId] = useState(null);
 
@@ -34,13 +33,18 @@ function App() {
           setActiveSection={setActiveSection}
         />
       )}
-       <Router>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
       <Routes>
+        <Route path="/" element={<MainApp />} />
         <Route path="/admin" element={<AdminDashboard />} />
-        {/* ...other routes */}
       </Routes>
     </Router>
-    </>
   );
 }
 
