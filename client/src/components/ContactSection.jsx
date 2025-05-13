@@ -10,12 +10,17 @@ const ContactSection = () => {
   const sendEmail = () => {
     const templateParams = {
       from_name: 'Portfolio Visitor',
-      message: 'Someone clicked the "Email Me" button on your portfolio.',
-      reply_to: 'visitor@example.com',
+      message: 'Hello! I clicked your email button on your portfolio.',
+      reply_to: 'visitor@example.com', // Optional fallback email
     };
 
     emailjs
-      .send('service_v0tyeda', 'template_7tfpukl', templateParams, '-8UObVuGcol-6ldIg')
+      .send(
+        'service_v0tyeda',        // ✅ Replace with your actual EmailJS service ID
+        'template_7tfpukl',       // ✅ Replace with your actual EmailJS template ID
+        templateParams,
+        '-8UObVuGcol-6ldIg'       // ✅ Replace with your actual EmailJS public key
+      )
       .then(() => {
         alert('Email sent successfully!');
       })
