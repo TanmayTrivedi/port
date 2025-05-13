@@ -9,6 +9,12 @@ import BlogSection from './components/BlogSection';
 import BlogDetails from './components/BlogDetails';
 import AdminDashboard from './components/AdminDashboard';
 
+// AdminWrapper for /admin route
+const AdminWrapper = () => {
+  const [activeSection, setActiveSection] = useState('admin');
+  return <AdminDashboard setActiveSection={setActiveSection} />;
+};
+
 function MainApp() {
   const [activeSection, setActiveSection] = useState('home');
   const [selectedBlogId, setSelectedBlogId] = useState(null);
@@ -42,7 +48,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<MainApp />} />
-        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin" element={<AdminWrapper />} />
       </Routes>
     </Router>
   );
