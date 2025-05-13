@@ -1,10 +1,29 @@
 import React, { useEffect } from 'react';
 import { FaGithub, FaLinkedin, FaDribbble } from 'react-icons/fa';
+import emailjs from '@emailjs/browser';
 
 const ContactSection = () => {
   useEffect(() => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   }, []);
+
+  const sendEmail = () => {
+    const templateParams = {
+      from_name: 'Portfolio Visitor',
+      message: 'Someone clicked the "Email Me" button on your portfolio.',
+      reply_to: 'visitor@example.com',
+    };
+
+    emailjs
+      .send('service_v0tyeda', 'template_7tfpukl', templateParams, '-8UObVuGcol-6ldIg')
+      .then(() => {
+        alert('Email sent successfully!');
+      })
+      .catch((error) => {
+        alert('Failed to send email. Please try again later.');
+        console.error('EmailJS Error:', error);
+      });
+  };
 
   return (
     <section 
@@ -46,12 +65,12 @@ const ContactSection = () => {
       <div className="my-8 border-t border-gray-600 w-1/2 mx-auto"></div>
 
       <div className="flex justify-center">
-        <a 
-          href="mailto:tanmayrishu1112@gmail.com"  // ✅ Replace with your actual email
+        <button 
+          onClick={sendEmail}
           className="mt-6 inline-block border border-[#80f0e9] border-[3px] bg-[#222831] text-white font-bold py-3 px-6 rounded-full hover:bg-[#80f0e9] transition-transform transform hover:text-[#222831] hover:scale-105"
         >
           Email Me
-        </a>
+        </button>
       </div>
     </section>
   );
