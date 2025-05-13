@@ -9,10 +9,12 @@ const ContactSection = () => {
 
   const sendEmail = () => {
     const templateParams = {
-      from_name: 'Portfolio Visitor',
-      message: 'Hello! I clicked your email button on your portfolio.',
-      reply_to: 'visitor@example.com', // Optional fallback email
-    };
+  name: 'Portfolio Visitor',
+  message: 'Hello! I clicked your email button on your portfolio.',
+  email: 'visitor@example.com', // This should match {{email}} in the template
+  title: 'Portfolio Contact',   // This should match {{title}} in the subject
+};
+
 
     emailjs
       .send(
