@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { FaGithub, FaLinkedin, FaDribbble } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaFigma } from 'react-icons/fa';
 
 const ContactSection = () => {
   useEffect(() => {
@@ -23,8 +23,8 @@ const ContactSection = () => {
         <a href="https://www.linkedin.com/in/tanmay-trivedi-17350532a/" target="_blank" rel="noopener noreferrer" className="hover:text-[#80f0e9] transition">
           <FaLinkedin />
         </a>
-        <a href="https://dribbble.com/yourusername" target="_blank" rel="noopener noreferrer" className="hover:text-[#80f0e9] transition">
-          <FaDribbble />
+        <a href="https://www.figma.com/design/zSK0kgWWiDZHNrtgGYnEWS/Desktop-sign-up-and-login-pages-by-EditorM--Community-?node-id=0-1&p=f&t=euxRsP0uY81dYruv-0" target="_blank" rel="noopener noreferrer" className="hover:text-[#80f0e9] transition">
+          <FaFigma />
         </a>
       </div>
 
