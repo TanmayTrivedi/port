@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import ProjectsSection from './components/Projects';
 import ContactSection from './components/ContactSection';
-import AboutSection from './components/AboutPage';
+import AboutSection from './components/AboutPage'; // This is the AboutPage component
 import BlogSection from './components/BlogSection';
 import BlogDetails from './components/BlogDetails';
 import AdminDashboard from './components/AdminDashboard';
@@ -26,7 +26,9 @@ function MainApp() {
       {activeSection === 'home' && <HeroSection />}
       {activeSection === 'projects' && <ProjectsSection />}
       {activeSection === 'contact' && <ContactSection />}
-      {activeSection === 'about' && <AboutSection />}
+      {activeSection === 'about' && (
+        <AboutSection setActiveSection={setActiveSection} />
+      )}
       {activeSection === 'blog' && (
         <BlogSection
           setActiveSection={setActiveSection}

@@ -2,39 +2,54 @@ import React from 'react';
 
 const projects = [
   {
-    title: 'AI-Powered Portfolio',
-    description: 'A personal portfolio enhanced with AI features for interactivity and user insights.',
-    aiSummary: 'Automatically showcases dynamic content and smart summaries using OpenAI APIs.',
-    tech: ['React', 'Tailwind', 'OpenAI'],
-    link: '#',
+    id: 'project1',
+    title: 'Project',
+    description: 'A general-purpose project repository showcasing various experiments and code samples.',
+    aiSummary: 'Demonstrates versatility in project structure and code organization.',
+    tags: ['React', 'Firebase', 'JavaScript'],
+    github: 'https://github.com/TanmayTrivedi/Project',
+    live: '', // Add live link if you have one
+    linkedin: '', // Add LinkedIn link if you have one
   },
   {
-    title: 'Crime Data Analytics',
-    description: 'Visualized crime statistics using Power BI and Python for LA city data.',
-    aiSummary: 'Detects trends in crime data and provides interactive visual storytelling.',
-    tech: ['Python', 'Power BI'],
-    link: 'https://github.com/TanmayTrivedi/crime-report.git',
+    id: 'project2',
+    title: 'Calculator',
+    description: 'A simple and responsive calculator app built with React. Supports basic arithmetic operations.',
+    aiSummary: 'Highlights UI/UX skills and React component design.',
+    tags: ['React', 'Calculator', 'CSS'],
+    github: 'https://github.com/TanmayTrivedi/Calculator',
+    live: '', // Add live link if you have one
+    linkedin: '', // Add LinkedIn link if you have one
   },
   {
-    title: 'Calculator-Using Python GUI',
-    description: 'A simple GUI-based calculator built using Tkinter in Python.',
-    aiSummary: 'Lightweight tool to perform basic arithmetic operations with a clean interface.',
-    tech: ['Tkinter'],
-    link: 'https://github.com/TanmayTrivedi/Project.git',
+    id: 'project3',
+    title: 'BloodMate',
+    description: 'A blood donation management system to connect donors and recipients efficiently.',
+    aiSummary: 'Focuses on solving real-world problems with full-stack development.',
+    tags: ['React', 'Node.js', 'Express', 'MongoDB'],
+    github: 'https://github.com/TanmayTrivedi/BloodMate',
+    live: '', // Add live link if you have one
+    linkedin: '', // Add LinkedIn link if you have one
   },
   {
-    title: 'Blood Donor App',
-    description: 'Direct communication platform between donors and receivers for emergencies.',
-    aiSummary: 'Streamlines emergency blood requests by connecting donors and receivers instantly.',
-    tech: ['Pug', 'NodeJS', 'Mongoose'],
-    link: 'https://github.com/TanmayTrivedi/BloodMate.git',
+    id: 'project4',
+    title: 'Crime Report',
+    description: 'A platform for reporting and tracking crimes, enhancing community safety and awareness.',
+    aiSummary: 'Emphasizes backend integration and secure data handling.',
+    tags: ['React', 'Express', 'Security'],
+    github: 'https://github.com/TanmayTrivedi/crime-report',
+    live: '', // Add live link if you have one
+    linkedin: '', // Add LinkedIn link if you have one
   },
   {
-    title: 'Stylish Project Card',
-    description: 'A clean and simple project card with distinct design elements and hover effects.',
-    aiSummary: 'Focuses on UI/UX enhancements with smooth hover transitions.',
-    tech: ['Custom CSS', 'Tailwind'],
-    link: '#',
+    id: 'project5',
+    title: 'Portfolio',
+    description: 'A personal portfolio website to showcase projects, skills, and experience.',
+    aiSummary: 'Demonstrates personal branding and web development expertise.',
+    tags: ['React', 'Portfolio', 'CSS'],
+    github: 'https://github.com/TanmayTrivedi/port',
+    live: '', // Add live link if you have one
+    linkedin: '', // Add LinkedIn link if you have one
   },
 ];
 
@@ -45,7 +60,7 @@ const ProjectsSection = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {projects.map((project, index) => (
           <div
-            key={index}
+            key={project.id || index}
             className={`group ${
               project.title === 'Stylish Project Card'
                 ? 'bg-[#00ADB5] text-white'
@@ -55,29 +70,60 @@ const ProjectsSection = () => {
           >
             <h3 className="text-xl font-bold mb-2 group-hover:text-[#222831]">{project.title}</h3>
             <p className="text-sm text-gray-100 mb-4 group-hover:text-[#222831]">{project.description}</p>
-            <p className="text-sm text-gray-400 mb-2 italic group-hover:text-[#393E46]">
-              AI Summary: {project.aiSummary}
-            </p>
+
+            {project.aiSummary && (
+              <p className="text-sm text-gray-400 mb-2 italic group-hover:text-[#393E46]">
+                AI Summary: {project.aiSummary}
+              </p>
+            )}
 
             <div className="flex flex-wrap gap-2 mb-4">
-              {project.tech.map((tech, i) => (
+              {project.tags?.map((tag, i) => (
                 <span
                   key={i}
                   className="text-xs bg-white text-[#222831] px-2 py-1 rounded-full"
                 >
-                  {tech}
+                  {tag}
                 </span>
               ))}
             </div>
 
-            <a
-              href={project.link}
-              className="text-white underline text-sm group-hover:text-[#222831]"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View Project
-            </a>
+            {(project.github || project.live || project.linkedin) ? (
+              <div className="flex gap-4">
+                {project.github && (
+                  <a
+                    href={project.github}
+                    className="text-white underline text-sm group-hover:text-[#222831]"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    GitHub
+                  </a>
+                )}
+                {project.live && (
+                  <a
+                    href={project.live}
+                    className="text-white underline text-sm group-hover:text-[#222831]"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Live Demo
+                  </a>
+                )}
+                {project.linkedin && (
+                  <a
+                    href={project.linkedin}
+                    className="text-white underline text-sm group-hover:text-[#222831]"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    LinkedIn
+                  </a>
+                )}
+              </div>
+            ) : (
+              <p className="text-sm italic text-gray-400">No links provided</p>
+            )}
           </div>
         ))}
       </div>
