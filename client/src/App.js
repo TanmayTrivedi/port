@@ -1,23 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import ProjectsSection from './components/Projects';
 import ContactSection from './components/ContactSection';
-import AboutSection from './components/AboutPage'; // This is the AboutPage component
+import AboutSection from './components/AboutPage';
 import BlogSection from './components/BlogSection';
 import BlogDetails from './components/BlogDetails';
 import AdminDashboard from './components/AdminDashboard';
+// Import the visit counter if you want to track visits
+import { incrementVisitCount } from './utils/visitCounter'; 
 
-// AdminWrapper for /admin route
+// Admin route wrapper
 const AdminWrapper = () => {
   const [activeSection, setActiveSection] = useState('admin');
   return <AdminDashboard setActiveSection={setActiveSection} />;
 };
 
-function MainApp() {
+// Main site app
+const MainApp = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [selectedBlogId, setSelectedBlogId] = useState(null);
+
+  // Uncomment this useEffect if you want to increment visit count on every site load
+  
+  useEffect(() => {
+    incrementVisitCount();
+  }, []);
+  
 
   return (
     <>
@@ -43,7 +53,7 @@ function MainApp() {
       )}
     </>
   );
-}
+};
 
 function App() {
   return (
