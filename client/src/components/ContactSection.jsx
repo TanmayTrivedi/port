@@ -1,36 +1,10 @@
 import React, { useEffect } from 'react';
 import { FaGithub, FaLinkedin, FaDribbble } from 'react-icons/fa';
-import emailjs from '@emailjs/browser';
 
 const ContactSection = () => {
   useEffect(() => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   }, []);
-
-  const sendEmail = () => {
-    const templateParams = {
-  name: 'Portfolio Visitor',
-  message: 'Hello! I clicked your email button on your portfolio.',
-  email: 'visitor@example.com', // This should match {{email}} in the template
-  title: 'Portfolio Contact',   // This should match {{title}} in the subject
-};
-
-
-    emailjs
-      .send(
-        'service_v0tyeda',        // ✅ Replace with your actual EmailJS service ID
-        'template_7tfpukl',       // ✅ Replace with your actual EmailJS template ID
-        templateParams,
-        '-8UObVuGcol-6ldIg'       // ✅ Replace with your actual EmailJS public key
-      )
-      .then(() => {
-        alert('Email sent successfully!');
-      })
-      .catch((error) => {
-        alert('Failed to send email. Please try again later.');
-        console.error('EmailJS Error:', error);
-      });
-  };
 
   return (
     <section 
@@ -43,28 +17,13 @@ const ContactSection = () => {
       </p>
 
       <div className="flex justify-center gap-8 text-4xl">
-        <a
-          href="https://github.com/TanmayTrivedi"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-[#80f0e9] transition"
-        >
+        <a href="https://github.com/TanmayTrivedi" target="_blank" rel="noopener noreferrer" className="hover:text-[#80f0e9] transition">
           <FaGithub />
         </a>
-        <a
-          href="https://www.linkedin.com/in/tanmay-trivedi-17350532a/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-[#80f0e9] transition"
-        >
+        <a href="https://www.linkedin.com/in/tanmay-trivedi-17350532a/" target="_blank" rel="noopener noreferrer" className="hover:text-[#80f0e9] transition">
           <FaLinkedin />
         </a>
-        <a
-          href="https://dribbble.com/yourusername"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-[#80f0e9] transition"
-        >
+        <a href="https://dribbble.com/yourusername" target="_blank" rel="noopener noreferrer" className="hover:text-[#80f0e9] transition">
           <FaDribbble />
         </a>
       </div>
@@ -72,12 +31,12 @@ const ContactSection = () => {
       <div className="my-8 border-t border-gray-600 w-1/2 mx-auto"></div>
 
       <div className="flex justify-center">
-        <button 
-          onClick={sendEmail}
+        <a 
+          href="mailto:tanmayrishu1112@gmail.com?subject=Let's Connect&body=Hi Tanmay,%0D%0A%0D%0AI wanted to reach out..."
           className="mt-6 inline-block border border-[#80f0e9] border-[3px] bg-[#222831] text-white font-bold py-3 px-6 rounded-full hover:bg-[#80f0e9] transition-transform transform hover:text-[#222831] hover:scale-105"
         >
           Email Me
-        </button>
+        </a>
       </div>
     </section>
   );
