@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { FaGithub, FaLinkedin, FaDribbble } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaFigma } from 'react-icons/fa';
 
 const ContactSection = () => {
   useEffect(() => {
@@ -34,12 +34,12 @@ const ContactSection = () => {
           <FaLinkedin />
         </a>
         <a
-          href="https://dribbble.com/yourusername"
+          href="https://www.figma.com/design/zSK0kgWWiDZHNrtgGYnEWS/Desktop-sign-up-and-login-pages-by-EditorM--Community-?node-id=0-1&t=4ZnVPmhgLyTSQKzF-0"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-[#80f0e9] transition"
         >
-          <FaDribbble />
+          <FaFigma />
         </a>
       </div>
 
@@ -47,7 +47,7 @@ const ContactSection = () => {
 
       <div className="flex justify-center">
         <a 
-          href="mailto:your-email@example.com" 
+          href="mailto:tanmayrishu1112@gmail.com" 
           className="mt-6 inline-block border border-[#80f0e9] border-[3px] bg-[#222831] text-white text-bold py-3 px-6 rounded-full hover:bg-[#80f0e9] transition-transform transform hover:text-[#222831]  hover:scale-105"
         >
           Email Me
