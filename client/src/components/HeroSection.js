@@ -26,7 +26,7 @@ const HeroSection = () => {
 
         <div className="mt-6 flex gap-x-4">
           <a
-            href="/Tanmay Trivedi Resume.docx (2).pdf"
+            href="/Tanmay-Trivedi-Resume.pdf"
             download
             className="px-6 py-2 border-[3px] border-[#80f0e9] bg-[#222831] text-white font-semibold rounded-full shadow hover:bg-[#80f0e9] hover:text-[#222831] transition hover:scale-105 transition-transform duration-300"
           >
