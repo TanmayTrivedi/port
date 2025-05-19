@@ -1,4 +1,6 @@
-import React from 'react';
+import { getDocs, collection } from 'firebase/firestore';
+import { db } from '../firebase'; 
+import React, { useState, useEffect } from 'react';
 
 const projects = [
   {

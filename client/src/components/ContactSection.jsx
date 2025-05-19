@@ -29,7 +29,7 @@ const ContactSection = () => {
           rel="noopener noreferrer"
           className="hover:text-[#80f0e9] transition"
         >
-          <FaDribbble />
+          <FaFigma />
         </a>
       </div>
 
