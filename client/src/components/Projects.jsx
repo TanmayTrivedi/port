@@ -1,6 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../firebase'; // adjust the path if needed
+import React from 'react';
+
+const projects = [
+  {
+    title: 'AI-Powered Portfolio',
+    description: 'A personal portfolio enhanced with AI features for interactivity and user insights.',
+    aiSummary: 'Automatically showcases dynamic content and smart summaries using OpenAI APIs.',
+    tech: ['React', 'Tailwind', 'OpenAI'],
+    link: '#',
+  },
+  {
+    title: 'Crime Data Analytics',
+    description: 'Visualized crime statistics using Power BI and Python for LA city data.',
+    aiSummary: 'Detects trends in crime data and provides interactive visual storytelling.',
+    tech: ['Python', 'Power BI'],
+    link: 'https://github.com/TanmayTrivedi/crime-report.git',
+  },
+  {
+    title: 'Calculator-Using Python GUI',
+    description: 'A simple GUI-based calculator built using Tkinter in Python.',
+    aiSummary: 'Lightweight tool to perform basic arithmetic operations with a clean interface.',
+    tech: ['Tkinter'],
+    link: 'https://github.com/TanmayTrivedi/Project.git',
+  },
+  {
+    title: 'Blood Donor App',
+    description: 'Direct communication platform between donors and receivers for emergencies.',
+    aiSummary: 'Streamlines emergency blood requests by connecting donors and receivers instantly.',
+    tech: ['Pug', 'NodeJS', 'Mongoose'],
+    link: 'https://github.com/TanmayTrivedi/BloodMate.git',
+  },
+  {
+    title: 'Stylish Project Card',
+    description: 'A clean and simple project card with distinct design elements and hover effects.',
+    aiSummary: 'Focuses on UI/UX enhancements with smooth hover transitions.',
+    tech: ['Custom CSS', 'Tailwind'],
+    link: '#',
+  },
+];
 
 const ProjectsSection = () => {
   const [projects, setProjects] = useState([]);
@@ -56,32 +92,14 @@ const ProjectsSection = () => {
               ))}
             </div>
 
-            {project.github || project.live ? (
-              <div className="flex gap-4">
-                {project.github && (
-                  <a
-                    href={project.github}
-                    className="text-white underline text-sm group-hover:text-[#222831]"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    GitHub
-                  </a>
-                )}
-                {project.live && (
-                  <a
-                    href={project.live}
-                    className="text-white underline text-sm group-hover:text-[#222831]"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Live Demo
-                  </a>
-                )}
-              </div>
-            ) : (
-              <p className="text-sm italic text-gray-400">No links provided</p>
-            )}
+            <a
+              href={project.link}
+              className="text-white underline text-sm group-hover:text-[#222831]"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Project
+            </a>
           </div>
         ))}
       </div>

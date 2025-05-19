@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import ProjectsSection from './components/Projects';
@@ -6,28 +7,27 @@ import ContactSection from './components/ContactSection';
 import AboutSection from './components/AboutPage';
 import BlogSection from './components/BlogSection';
 import BlogDetails from './components/BlogDetails';
-import AdminBlogPage from './components/AdminBlogPage';
-import AdminProject from './components/AdminProject';
 import AdminDashboard from './components/AdminDashboard';
- // ✅ corrected
+// Import the visit counter if you want to track visits
+import { incrementVisitCount } from './utils/visitCounter'; 
 
-function App() {
+// Admin route wrapper
+const AdminWrapper = () => {
+  const [activeSection, setActiveSection] = useState('admin');
+  return <AdminDashboard setActiveSection={setActiveSection} />;
+};
+
+// Main site app
+const MainApp = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [selectedBlogId, setSelectedBlogId] = useState(null);
-  const [showAdminPanel, setShowAdminPanel] = useState(false);
 
+  // Uncomment this useEffect if you want to increment visit count on every site load
+  
   useEffect(() => {
-    const handleKey = (e) => {
-      if (e.key === 'F2') {
-        setShowAdminPanel(true);
-        setActiveSection('admin');
-      }
-    };
-    
-
-    window.addEventListener('keydown', handleKey);
-    return () => window.removeEventListener('keydown', handleKey);
+    incrementVisitCount();
   }, []);
+  
 
   return (
     <>
@@ -36,7 +36,9 @@ function App() {
       {activeSection === 'home' && <HeroSection />}
       {activeSection === 'projects' && <ProjectsSection />}
       {activeSection === 'contact' && <ContactSection />}
-      {activeSection === 'about' && <AboutSection />}
+      {activeSection === 'about' && (
+        <AboutSection setActiveSection={setActiveSection} />
+      )}
       {activeSection === 'blog' && (
         <BlogSection
           setActiveSection={setActiveSection}
@@ -49,10 +51,18 @@ function App() {
           setActiveSection={setActiveSection}
         />
       )}
-     {activeSection === 'admin' && showAdminPanel && (
-  <AdminDashboard setActiveSection={setActiveSection} />
-)}
     </>
+  );
+};
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainApp />} />
+        <Route path="/admin" element={<AdminWrapper />} />
+      </Routes>
+    </Router>
   );
 }
 

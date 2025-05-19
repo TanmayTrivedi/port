@@ -84,7 +84,7 @@ const AdminBlogPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#1f1f1f] text-white p-6 pt-28">
+    <div className="min-h-screen  bg-[#222831] text-white p-6 ">
       <h2 className="text-2xl font-bold mb-4">Admin Blog Panel</h2>
 
       <form onSubmit={handleSubmit} className="mb-6 space-y-4">
@@ -93,20 +93,20 @@ const AdminBlogPage = () => {
           value={title}
           onChange={e => setTitle(e.target.value)}
           placeholder="Blog Title"
-          className="w-full p-2 rounded bg-gray-800 text-white border border-gray-600"
+          className="w-full p-2 rounded bg-gray-800 text-white border-[3px] border-[#80f0e9]"
           required
         />
         <textarea
           value={content}
           onChange={e => setContent(e.target.value)}
           placeholder="Blog Content"
-          className="w-full p-2 rounded bg-gray-800 text-white border border-gray-600"
+          className="w-full p-2 rounded bg-gray-800 text-white border-[3px] border-[#80f0e9]"
           rows={5}
           required
         />
         <button
           type="submit"
-          className="bg-[#80f0e9] text-[#1f1f1f] font-bold px-4 py-2 rounded hover:bg-[#4dd0c3]"
+          className="px-6 py-2 border-[3px] border-[#80f0e9] bg-[#222831] text-white font-semibold rounded-full shadow hover:bg-[#80f0e9] hover:text-[#222831] transition hover:scale-105 transition-transform duration-300"
         >
           {editId ? 'Update Blog' : 'Add Blog'}
         </button>
@@ -116,19 +116,19 @@ const AdminBlogPage = () => {
 
       <div className="space-y-4">
         {blogs.map(blog => (
-          <div key={blog.id} className="p-4 border border-gray-700 rounded bg-[#2c2c2c]">
+          <div key={blog.id} className="p-4 border-[3px] border-[#80f0e9] rounded bg-[#222831]">
             <h3 className="text-xl font-semibold text-[#80f0e9]">{blog.title}</h3>
             <p className="text-gray-300 mt-2 whitespace-pre-line">{blog.content}</p>
             <div className="mt-4 space-x-2">
               <button
                 onClick={() => handleEdit(blog)}
-                className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
+                className="px-6 py-2 border-[3px] border-[#80f0e9] bg-[#222831] text-white font-semibold rounded-full shadow hover:bg-[#80f0e9] hover:text-[#222831] transition hover:scale-105 transition-transform duration-300"
               >
                 Edit
               </button>
               <button
                 onClick={() => handleDelete(blog.id)}
-                className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+                className="px-6 py-2 border-[3px] border-[#80f0e9] bg-[#222831] text-white font-semibold rounded-full shadow hover:bg-[#80f0e9] hover:text-[#222831] transition hover:scale-105 transition-transform duration-300"
               >
                 Delete
               </button>

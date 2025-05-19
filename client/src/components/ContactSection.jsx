@@ -17,29 +17,19 @@ const ContactSection = () => {
       </p>
 
       <div className="flex justify-center gap-8 text-4xl">
-        <a
-          href="https://github.com/TanmayTrivedi"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-[#80f0e9] transition"
-        >
+        <a href="https://github.com/TanmayTrivedi" target="_blank" rel="noopener noreferrer" className="hover:text-[#80f0e9] transition">
           <FaGithub />
         </a>
-        <a
-          href="https://www.linkedin.com/in/tanmay-trivedi-17350532a/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-[#80f0e9] transition"
-        >
+        <a href="https://www.linkedin.com/in/tanmay-trivedi-17350532a/" target="_blank" rel="noopener noreferrer" className="hover:text-[#80f0e9] transition">
           <FaLinkedin />
         </a>
         <a
-          href="https://www.figma.com/design/zSK0kgWWiDZHNrtgGYnEWS/Desktop-sign-up-and-login-pages-by-EditorM--Community-?node-id=0-1&t=4ZnVPmhgLyTSQKzF-0"
+          href="https://dribbble.com/yourusername"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-[#80f0e9] transition"
         >
-          <FaFigma />
+          <FaDribbble />
         </a>
       </div>
 
@@ -47,7 +37,7 @@ const ContactSection = () => {
 
       <div className="flex justify-center">
         <a 
-          href="mailto:tanmayrishu1112@gmail.com" 
+          href="mailto:your-email@example.com" 
           className="mt-6 inline-block border border-[#80f0e9] border-[3px] bg-[#222831] text-white text-bold py-3 px-6 rounded-full hover:bg-[#80f0e9] transition-transform transform hover:text-[#222831]  hover:scale-105"
         >
           Email Me

@@ -26,9 +26,8 @@ const HeroSection = () => {
 
         <div className="mt-6 flex gap-x-4">
           <a
-            href="https://docs.google.com/document/d/1HKeTiqKECWdScRVo1p_-yLKb0YpPoKSL/edit?usp=sharing&ouid=108235974918647442305&rtpof=true&sd=true"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/Tanmay-Trivedi-Resume.pdf"
+            download
             className="px-6 py-2 border-[3px] border-[#80f0e9] bg-[#222831] text-white font-semibold rounded-full shadow hover:bg-[#80f0e9] hover:text-[#222831] transition hover:scale-105 transition-transform duration-300"
           >
             Resume
@@ -40,6 +39,14 @@ const HeroSection = () => {
             className="px-6 py-2 border-[3px] border-[#80f0e9] bg-[#222831] text-white font-semibold rounded-full shadow hover:bg-[#80f0e9] hover:text-[#222831] transition hover:scale-105 transition-transform duration-300"
           >
             GitHub
+          </a>
+          <a
+            href="https://www.onlinetest.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-2 border-[3px] border-[#80f0e9] bg-[#222831] text-white font-semibold rounded-full shadow hover:bg-[#80f0e9] hover:text-[#222831] transition hover:scale-105 transition-transform duration-300"
+          >
+            OIT
           </a>
         </div>
       </div>
