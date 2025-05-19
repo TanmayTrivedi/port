@@ -6,7 +6,7 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="flex flex-col md:flex-row items-center justify-between h-screen pt-20 bg-[#222831] text-left px-12 relative overflow-hidden"
+      className=" w-full px-4 sm:px-6 md:px-8 flex flex-col md:flex-row items-center justify-between h-screen pt-20 bg-[#222831] text-left px-12 relative overflow-hidden"
     >
       {/* Glowing background circle */}
       <div className="absolute inset-0 flex justify-center items-center pointer-events-none z-0">
