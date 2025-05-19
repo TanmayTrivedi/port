@@ -24,7 +24,7 @@ const ContactSection = () => {
           <FaLinkedin />
         </a>
         <a
-          href="https://dribbble.com/yourusername"
+          href="https://www.figma.com/design/zSK0kgWWiDZHNrtgGYnEWS/Desktop-sign-up-and-login-pages-by-EditorM--Community-?node-id=0-1&p=f&t=sALCUPzGM0UBT6rt-0"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-[#80f0e9] transition"

@@ -2,7 +2,8 @@ import { getDocs, collection } from 'firebase/firestore';
 import { db } from '../firebase'; 
 import React, { useState, useEffect } from 'react';
 
-const projects = [
+// Fallback projects array (renamed to avoid shadowing)
+const defaultProjects = [
   {
     title: 'AI-Powered Portfolio',
     description: 'A personal portfolio enhanced with AI features for interactivity and user insights.',
@@ -41,19 +42,24 @@ const projects = [
 ];
 
 const ProjectsSection = () => {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState(defaultProjects);
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, 'projects'));
-        const fetchedProjects = querySnapshot.docs.map(doc => ({
+        let fetchedProjects = querySnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data(),
         }));
+        // If Firestore returns no projects, use the default ones
+        if (fetchedProjects.length === 0) {
+          fetchedProjects = defaultProjects;
+        }
         setProjects(fetchedProjects);
       } catch (error) {
         console.error('Error fetching projects:', error);
+        setProjects(defaultProjects);
       }
     };
 
@@ -84,7 +90,7 @@ const ProjectsSection = () => {
             )}
 
             <div className="flex flex-wrap gap-2 mb-4">
-              {project.tags?.map((tag, i) => (
+              {(project.tags || project.tech)?.map((tag, i) => (
                 <span
                   key={i}
                   className="text-xs bg-white text-[#222831] px-2 py-1 rounded-full"
